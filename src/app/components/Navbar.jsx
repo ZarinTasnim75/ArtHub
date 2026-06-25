@@ -10,7 +10,7 @@ export default function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [dashboardOpen, setDashboardOpen] = useState(false);
 
-    const user = true;
+    const user = false;
     const role = "artist";
 
     const navLinks = [
@@ -61,7 +61,7 @@ export default function Navbar() {
                         </nav>
                     </div>
 
-                    {/* Center */}
+
                     <div className="justify-self-center">
                         <Link href="/" className=" text-4xl font-black tracking-[0.25em] uppercase hover:opacity-80 transition " > ARTHUB </Link>
                     </div>
@@ -72,7 +72,7 @@ export default function Navbar() {
                                 Logout
                             </button>
                         ) : (
-                            <Link href="/login" className=" border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition " >
+                            <Link href="/auth/login" className=" border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition " >
                                 Login </Link>
                         )}
                     </div>
@@ -149,14 +149,13 @@ export default function Navbar() {
                                 Logout
                             </button>
                         ) : (
-                            <Link href="/login"
-                                className={`font-semibold pb-1 border-b-2 w-fit ${pathname === "/login"
+                            <Link href="/auth/login"
+                                className={`font-semibold pb-1 border-b-2 w-fit ${pathname === "/auth/login"
                                         ? "border-[#8B6B3F]" : "border-transparent hover:border-[#8B6B3F]"
                                     }`}
                                 onClick={() => setMenuOpen(false)} >  Login
                             </Link>
                         )}
-
                     </div>
                 )}
             </div>

@@ -2,6 +2,7 @@ import { Geist, Geist_Mono , Cormorant_Garamond} from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +28,12 @@ export default function RootLayout({ children }) {
   return (
      <html lang="en">
       <body className={cormorant.className}>
-     <div className="min-h-screen m-4 p-2" style={{ border: "12px solid #d8b77b", boxShadow: "inset 0 0 0 2px #fff, inset 0 0 0 6px #6b4f2a", }}>
+     <div className="min-h-screen p-2" style={{ border: "12px solid #d8b77b", boxShadow: "inset 0 0 0 2px #fff, inset 0 0 0 6px #6b4f2a", }}>
           <Navbar />
 
           <main>
             {children}
+            <Toaster position="top-right" />
           </main>
 
           <Footer />
