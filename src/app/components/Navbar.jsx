@@ -4,14 +4,19 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { authClient } from "../lib/auth-client";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
     const pathname = usePathname();
     const [menuOpen, setMenuOpen] = useState(false);
     const [dashboardOpen, setDashboardOpen] = useState(false);
+    const router = useRouter();
+    const { data: session, isPending } = authClient.useSession();
 
-    const user = false;
-    const role = "artist";
+    const user = session?.user;
+    const role = session?.role;
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -20,6 +25,29 @@ export default function Navbar() {
 
     const navStyle = (href) => `uppercase text-sm font-bold tracking-wider pb-1 border-b-2 transition-all duration-300 
     ${pathname === href ? "border-[#8B6B3F] text-black" : "border-transparent hover:border-[#8B6B3F]"}`;
+
+    if (isPending) {
+        return (
+            <div className="h-24 flex items-center justify-center">
+                <span className="loading loading-spinner loading-md"></span>
+            </div>
+        );
+    }
+
+
+    const handleLogout = async () => {
+        try {
+            await authClient.signOut();
+
+            toast.success("Logged out successfully");
+
+            router.push("/");
+            router.refresh();
+
+        } catch (error) {
+            toast.error("Logout failed");
+        }
+    };
 
     return (
         <header className="border-b border-neutral-300">
@@ -68,12 +96,27 @@ export default function Navbar() {
 
                     <div className="justify-self-end">
                         {user ? (
-                            <button className=" border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition " >
-                                Logout
-                            </button>
+                            <div className="flex items-center gap-4">
+
+                                <span className="font-bold text-[#8B6B3F]">
+                                    Hello! {user.name}
+                                </span>
+
+                                <button
+                                    onClick={handleLogout}
+                                    className="border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition"
+                                >
+                                    Logout
+                                </button>
+
+                            </div>
                         ) : (
-                            <Link href="/auth/login" className=" border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition " >
-                                Login </Link>
+                            <Link
+                                href="/auth/login"
+                                className="border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition"
+                            >
+                                Login
+                            </Link>
                         )}
                     </div>
                 </div>
@@ -100,7 +143,7 @@ export default function Navbar() {
 
                                 <button onClick={() => setDashboardOpen(!dashboardOpen)}
                                     className={`font-semibold pb-1 border-b-2 w-fit flex items-center gap-2 ${pathname.includes("/dashboard")
-                                            ? "border-[#8B6B3F] text-black" : "border-transparent hover:border-[#8B6B3F]" }`} >
+                                        ? "border-[#8B6B3F] text-black" : "border-transparent hover:border-[#8B6B3F]"}`} >
                                     Dashboard
                                     <span className="text-xs">
                                         {dashboardOpen ? "▲" : "▼"}
@@ -111,16 +154,16 @@ export default function Navbar() {
                                     <div className="ml-4 mt-3 flex flex-col gap-3 border-l-2 border-[#d8b77b] pl-4">
 
                                         {role === "admin" && (
-                                            <Link  href="/dashboard/admin" onClick={() => setMenuOpen(false)} className="text-gray-700" >
+                                            <Link href="/dashboard/admin" onClick={() => setMenuOpen(false)} className="text-gray-700" >
                                                 Admin Dashboard
                                             </Link>
                                         )}
 
                                         {role === "artist" && (
-                                            <Link href="/dashboard/artist" onClick={() => { 
-                                                    setMenuOpen(false); 
-                                                    setDashboardOpen(false);
-                                                }}
+                                            <Link href="/dashboard/artist" onClick={() => {
+                                                setMenuOpen(false);
+                                                setDashboardOpen(false);
+                                            }}
                                                 className="text-gray-700"
                                             >
                                                 Artist Dashboard
@@ -129,9 +172,9 @@ export default function Navbar() {
 
                                         {role === "user" && (
                                             <Link href="/dashboard/user" onClick={() => {
-                                                    setMenuOpen(false);
-                                                    setDashboardOpen(false);
-                                                }}
+                                                setMenuOpen(false);
+                                                setDashboardOpen(false);
+                                            }}
                                                 className="text-gray-700"
                                             >
                                                 User Dashboard
@@ -151,7 +194,7 @@ export default function Navbar() {
                         ) : (
                             <Link href="/auth/login"
                                 className={`font-semibold pb-1 border-b-2 w-fit ${pathname === "/auth/login"
-                                        ? "border-[#8B6B3F]" : "border-transparent hover:border-[#8B6B3F]"
+                                    ? "border-[#8B6B3F]" : "border-transparent hover:border-[#8B6B3F]"
                                     }`}
                                 onClick={() => setMenuOpen(false)} >  Login
                             </Link>
