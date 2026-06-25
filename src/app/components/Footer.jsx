@@ -20,7 +20,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">
+                        <h3 className="text-lg font-black mb-4">
                             Quick Links
                         </h3>
 
@@ -40,7 +40,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h3 className="text-lg font-semibold mb-4">
+                        <h3 className="text-lg font-black mb-4">
                             Newsletter
                         </h3>
 
@@ -53,7 +53,7 @@ const Footer = () => {
                                 placeholder="Enter your email"
                                 className="w-full px-4 py-2 text-black bg-white outline-none" />
 
-                            <button className="bg-[#8B6B3F] px-5 py-2 font-semibold hover:bg-[#735731] transition">
+                            <button className="bg-[#8B6B3F] px-5 py-2 font-black hover:bg-[#735731] transition">
                                 Join
                             </button>
                         </div>

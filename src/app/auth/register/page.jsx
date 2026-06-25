@@ -110,7 +110,7 @@ const RegisterPage = () => {
                             Create Account
                         </h2>
 
-                        <p className="mt-3 text-gray-500 font-semibold">
+                        <p className="mt-3 text-gray-500 font-black">
                             Join ARTHUB and discover original artworks.
                         </p>
 
@@ -279,7 +279,7 @@ const RegisterPage = () => {
                             Continue with Google
                         </button>
 
-                        <p className="mt-8 text-center font-semibold text-gray-500">
+                        <p className="mt-8 text-center font-black text-gray-500">
                             Already have an account?{" "}
                             <Link
                                 href="/auth/login"

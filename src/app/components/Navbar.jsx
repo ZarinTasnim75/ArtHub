@@ -134,7 +134,7 @@ export default function Navbar() {
                     <div className="lg:hidden border-t py-4 flex flex-col gap-4">
 
                         {navLinks.map((link) => (
-                            <Link key={link.href} href={link.href} className={`font-semibold pb-1 border-b-2 w-fit ${pathname === link.href ? "border-[#8B6B3F] text-black"
+                            <Link key={link.href} href={link.href} className={`font-black pb-1 border-b-2 w-fit ${pathname === link.href ? "border-[#8B6B3F] text-black"
                                 : "border-transparent hover:border-[#8B6B3F]"}`}
                                 onClick={() => setMenuOpen(false)} > {link.name} </Link>))}
 
@@ -142,7 +142,7 @@ export default function Navbar() {
                             <div className="flex flex-col">
 
                                 <button onClick={() => setDashboardOpen(!dashboardOpen)}
-                                    className={`font-semibold pb-1 border-b-2 w-fit flex items-center gap-2 ${pathname.includes("/dashboard")
+                                    className={`font-black pb-1 border-b-2 w-fit flex items-center gap-2 ${pathname.includes("/dashboard")
                                         ? "border-[#8B6B3F] text-black" : "border-transparent hover:border-[#8B6B3F]"}`} >
                                     Dashboard
                                     <span className="text-xs">
@@ -193,7 +193,7 @@ export default function Navbar() {
                             </button>
                         ) : (
                             <Link href="/auth/login"
-                                className={`font-semibold pb-1 border-b-2 w-fit ${pathname === "/auth/login"
+                                className={`font-black pb-1 border-b-2 w-fit ${pathname === "/auth/login"
                                     ? "border-[#8B6B3F]" : "border-transparent hover:border-[#8B6B3F]"
                                     }`}
                                 onClick={() => setMenuOpen(false)} >  Login

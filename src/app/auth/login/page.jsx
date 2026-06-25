@@ -67,13 +67,12 @@ const LoginPage = () => {
     }
   };
 
-const handleGoogleSignin = async () => {
-
- const data =await authClient.signIn.social({
-  provider: "google",
- });
-
-}
+  const handleGoogleSignin = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/dashboard/user",
+    });
+  };
 
 
   return (
@@ -93,7 +92,7 @@ const handleGoogleSignin = async () => {
             <Link href="/" className="text-gray-500 hover:text-black transition" > <FaTimes size={22} /> </Link>
           </div>
 
-          <h2 className="text-3xl font-light tracking-[0.12em] uppercase text-gray-800"> Welcome Back </h2>
+          <h2 className="text-3xl font-bold tracking-[0.12em] uppercase text-gray-800"> Welcome Back </h2>
 
           <p className="mt-3 text-gray-500 font-bold">  Sign in to explore original artworks and collections. </p>
 
@@ -165,12 +164,12 @@ const handleGoogleSignin = async () => {
           </div>
 
           <button className="w-full flex items-center justify-center gap-3 border border-gray-300 py-3 hover:bg-gray-50 transition"
-          onClick={handleGoogleSignin} >
+            onClick={handleGoogleSignin} >
             <FcGoogle size={22} />
             Continue with Google
           </button>
 
-          <p className="mt-8 text-center font-semibold text-gray-500">
+          <p className="mt-8 text-center font-black text-gray-500">
             Don't have an account?{" "}
             <Link
               href="/auth/register"

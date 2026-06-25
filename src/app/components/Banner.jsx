@@ -65,15 +65,15 @@ const Banner = () => {
                                     Discover & Buy Original Art
                                 </p>
 
-                                <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl ml-4 lg:ml-6 font-light tracking-[0.12em] uppercase leading-tight">
+                                <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl ml-4 lg:ml-6 font-bold tracking-[0.12em] uppercase leading-tight">
                                     {slide.title}
                                 </h1>
 
-                                <h2 className="text-2xl md:text-4xl lg:text-5xl mt-3 ml-4 lg:ml-6 font-light">
+                                <h2 className="text-2xl md:text-4xl lg:text-5xl mt-3 ml-4 lg:ml-6 font-bold">
                                     {slide.subtitle}
                                 </h2>
 
-                                <Link href="/artworks" className="relative inline-block whitespace-nowrap mt-8 lg:mt-10 px-12 lg:px-16 py-4 text-base lg:text-lg font-semibold tracking-wide border border-[#d8b77b] hover:bg-[#d8b77b]/20 transition">
+                                <Link href="/artworks" className="relative inline-block whitespace-nowrap mt-8 lg:mt-10 px-12 lg:px-16 py-4 text-base lg:text-lg font-black tracking-wide border border-[#d8b77b] hover:bg-[#d8b77b]/20 transition">
                                     <span className="absolute top-0 right-0 w-8 h-[2px] bg-white"></span>
                                     <span className="absolute bottom-0 left-0 w-8 h-[2px] bg-white"></span>
                                     Browse Artworks
@@ -88,7 +88,7 @@ const Banner = () => {
                                     <FaClock className="text-[#8B6B3F] text-2xl mt-1" />
 
                                     <div>
-                                        <h3 className="uppercase tracking-[0.12em] text-gray-700 font-semibold">    Opening Hours</h3>
+                                        <h3 className="uppercase tracking-[0.12em] text-gray-700 font-black">    Opening Hours</h3>
 
                                         <p className="text-gray-600 mt-2 text-sm">    Mon - Fri: 09am - 07pm</p>
 
@@ -102,7 +102,7 @@ const Banner = () => {
                                     <FaMapMarkerAlt className="text-[#8B6B3F] text-2xl mt-1" />
 
                                     <div>
-                                        <h3 className="uppercase tracking-[0.12em] text-gray-700 font-semibold">    Location</h3>
+                                        <h3 className="uppercase tracking-[0.12em] text-gray-700 font-black">    Location</h3>
 
                                         <p className="text-gray-600 mt-2 text-sm">    Savar, Dhaka</p>
 
@@ -131,7 +131,7 @@ const Banner = () => {
                     <FaClock className="text-[#8B6B3F] text-xl" />
 
                     <div>
-                        <h3 className="font-semibold uppercase text-sm">  Opening Hours</h3>
+                        <h3 className="font-black uppercase text-sm">  Opening Hours</h3>
 
                         <p className="text-gray-600 text-sm">    Mon - Fri: 09am - 07pm</p>
 
@@ -145,7 +145,7 @@ const Banner = () => {
                     <FaMapMarkerAlt className="text-[#8B6B3F] text-xl" />
 
                     <div>
-                        <h3 className="font-semibold uppercase text-sm">    Location</h3>
+                        <h3 className="font-black uppercase text-sm">    Location</h3>
 
                         <p className="text-gray-600 text-sm">    Savar, Dhaka, Bangladesh</p>
                     </div>
