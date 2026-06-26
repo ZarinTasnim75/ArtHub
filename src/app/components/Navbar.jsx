@@ -16,7 +16,7 @@ export default function Navbar() {
     const { data: session, isPending } = authClient.useSession();
 
     const user = session?.user;
-    const role = session?.role;
+    const role = session?.user?.role;
 
     const navLinks = [
         { name: "Home", href: "/" },
@@ -62,7 +62,13 @@ export default function Navbar() {
 
                             {user && (
                                 <div className="dropdown dropdown-hover inline-flex items-center relative">
-                                    <Link href="/dashboard" className={`uppercase text-sm font-bold tracking-wider pb-1 border-b-2
+                                    <Link href={
+                                        role === "admin"
+                                            ? "/dashboard/admin"
+                                            : role === "artist"
+                                                ? "/dashboard/artist"
+                                                : "/dashboard/user"
+                                    } className={`uppercase text-sm font-bold tracking-wider pb-1 border-b-2
                                     ${pathname.includes("/dashboard") ? "border-[#8B6B3F]" : "border-transparent hover:border-[#8B6B3F]"}`}> Dashboard</Link>
 
                                     <ul className=" dropdown-content menu bg-base-100 rounded-box w-56 shadow-lg absolute top-full left-0 mt-2 z-5 ">
