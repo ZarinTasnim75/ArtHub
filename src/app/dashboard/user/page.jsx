@@ -155,9 +155,11 @@ export default function UserDashboard() {
                             {currentPlan} Plan
                         </span>.
                     </p>
-
-                  
-
+                    <Link href="/dashboard/user/subscription">
+                        <button className="btn bg-[#8B6B3F] text-white mt-6">
+                            Upgrade Plan
+                        </button>
+                    </Link>
                 </div>
 
             </div>
