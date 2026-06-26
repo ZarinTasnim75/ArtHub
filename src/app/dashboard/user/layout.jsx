@@ -66,11 +66,8 @@ export default function UserLayout({ children }) {
                             }`}
                         >
                             {item.icon}
-                            <span className="font-bold tracking-wide">
-                                {item.name}
-                            </span>
+                            <span className="font-bold tracking-wide"> {item.name} </span>
                         </Link>
-
                     ))}
 
                 </nav>

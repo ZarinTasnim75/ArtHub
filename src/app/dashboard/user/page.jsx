@@ -1,13 +1,46 @@
 "use client";
 
-import {
-    FaShoppingBag,
-    FaCrown,
-    FaPalette,
-} from "react-icons/fa";
+import { FaShoppingBag, FaCrown, FaPalette } from "react-icons/fa";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { authClient } from "../../lib/auth-client";
+import Link from "next/link";
 
 export default function UserDashboard() {
+    const { data: session } = authClient.useSession();
 
+    const { data: userInfo } = useQuery({
+        queryKey: ["user", session?.user?.email],
+        enabled: !!session?.user?.email,
+        queryFn: async () => {
+            const res = await axios.get(
+                `${process.env.NEXT_PUBLIC_API_URL}/users?email=${session.user.email}`
+            );
+            return res.data;
+        },
+    });
+    console.log(userInfo);
+    const { data: purchases = [] } = useQuery({
+        queryKey: ["purchases", session?.user?.email],
+        enabled: !!session?.user?.email,
+        queryFn: async () => {
+            const res = await axios.get(
+                `${process.env.NEXT_PUBLIC_API_URL}/purchased-artworks?email=${session.user.email}`
+            );
+            return res.data;
+        },
+    });
+
+    const currentPlan = userInfo?.plan || "Free";
+
+    const maxPurchases = userInfo?.maxPurchases || 3;
+
+    const totalPurchases = purchases.length;
+
+    const remainingPurchases = Math.max(
+        maxPurchases - totalPurchases,
+        0
+    );
     return (
         <div>
 
@@ -15,17 +48,14 @@ export default function UserDashboard() {
 
                 <div className="border bg-white p-8">
 
-                    <FaShoppingBag
-                        className="text-[#8B6B3F]"
-                        size={34}
-                    />
+                    <FaShoppingBag className="text-[#8B6B3F]" size={34} />
 
                     <h2 className="mt-5 uppercase text-sm tracking-widest text-neutral-500 font-bold">
                         Total Purchases
                     </h2>
 
                     <p className="text-5xl font-black mt-4">
-                        0
+                        {totalPurchases}
                     </p>
 
                     <p className="text-neutral-500 mt-2">
@@ -46,11 +76,13 @@ export default function UserDashboard() {
                     </h2>
 
                     <p className="text-5xl font-black mt-4 text-[#8B6B3F]">
-                        Free
+                        {currentPlan}
                     </p>
 
                     <p className="text-neutral-500 mt-2">
-                        3 artworks allowed
+                        {maxPurchases === -1
+                            ? "Unlimited artworks allowed"
+                            : `${maxPurchases} artworks allowed`}
                     </p>
 
                 </div>
@@ -67,7 +99,7 @@ export default function UserDashboard() {
                     </h2>
 
                     <p className="text-5xl font-black mt-4">
-                        3
+                        {maxPurchases === -1 ? "∞" : remainingPurchases}
                     </p>
 
                     <p className="text-neutral-500 mt-2">
@@ -118,15 +150,13 @@ export default function UserDashboard() {
                     </h2>
 
                     <p className="mt-4 text-neutral-500">
-                        You are currently using the
+                        You are currently using the{" "}
                         <span className="font-bold text-[#8B6B3F]">
-                            {" "}Free Plan
+                            {currentPlan} Plan
                         </span>.
                     </p>
 
-                    <button className="btn bg-[#8B6B3F] text-white mt-6">
-                        Upgrade Plan
-                    </button>
+                  
 
                 </div>
 

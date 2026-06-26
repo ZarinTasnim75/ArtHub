@@ -1,5 +1,6 @@
 "use client";
 import { FaCheckCircle, FaCrown } from "react-icons/fa";
+import axios from "axios";
 
 export default function SubscriptionPage() {
     const currentPlan = "Free";
@@ -49,7 +50,7 @@ export default function SubscriptionPage() {
             ],
         },
     ];
-
+//
     return (
         <div>
 
@@ -99,8 +100,7 @@ export default function SubscriptionPage() {
 
                                 <div
                                     key={feature}
-                                    className="flex items-center gap-3"
-                                >
+                                    className="flex items-center gap-3" >
                                     <FaCheckCircle className="text-green-600" />
 
                                     <span>{feature}</span>
@@ -109,23 +109,14 @@ export default function SubscriptionPage() {
                             ))}
 
                         </div>
-                        <form action="/api/checkout_sessions" method="POST">
-                        <input type="hidden" name="plan_id" value={plan.id}></input>
-                            <section>
-                                <button type="submit" role="link" disabled={currentPlan === plan.name} className={`btn w-full mt-10 ${currentPlan === plan.name
-                                        ? "btn-disabled"
-                                        : "bg-[#8B6B3F] text-white"
-                                    }`}>
-                                    Checkout
-                                </button>
-                            </section>
-                        </form>
+                        {/* // */}
+                        
 
-                        {/* <button >
+                        <button >
                             {currentPlan === plan.name
                                 ? "Current Plan"
                                 : plan.button}
-                        </button> */}
+                        </button>
                     </div>
                 ))}
             </div>

@@ -10,12 +10,35 @@ export default async function Success({ searchParams }) {
     throw new Error("Please provide a valid session_id (`cs_test_...`)");
   }
 
+  const stripeSession = await stripe.checkout.sessions.retrieve(session_id);
+console.log(stripeSession.metadata);
   const {
     status,
     customer_details: { email: customerEmail },
-  } = await stripe.checkout.sessions.retrieve(session_id, {
-    expand: ["line_items", "payment_intent"],
-  });
+    metadata,
+  } = stripeSession;
+
+  if (status === "complete") {
+ 
+    const response = await fetch(
+      "http://localhost:5000/users/subscription",
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: customerEmail,
+          plan: metadata.plan,
+          maxPurchases: Number(metadata.maxPurchases),
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to update user subscription");
+    }
+  }
 
   if (status === "open") {
     redirect("/");

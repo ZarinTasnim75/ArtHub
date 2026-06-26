@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
   return (
      <html lang="en">
       <body className={cormorant.className}>
+        <Providers>
      <div className="min-h-screen p-2" style={{ border: "12px solid #d8b77b", boxShadow: "inset 0 0 0 2px #fff, inset 0 0 0 6px #6b4f2a", }}>
           <Navbar />
 
@@ -38,6 +40,7 @@ export default function RootLayout({ children }) {
 
           <Footer />
           </div>
+          </Providers>
       </body>
     </html>
   );
