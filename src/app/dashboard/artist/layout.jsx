@@ -27,7 +27,7 @@ export default function ArtistLayout({ children }) {
                     </Link>
 
                     <Link
-                        href="/dashboard/artist/artworks"
+                        href="/dashboard/artist/my-artworks"
                         className="block border p-3 font-bold hover:border-[#8B6B3F]"
                     >
                         Manage Artworks
@@ -61,7 +61,6 @@ export default function ArtistLayout({ children }) {
             <main className="flex-1 p-10">
                 {children}
             </main>
-
         </div>
     );
 }

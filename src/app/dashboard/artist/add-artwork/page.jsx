@@ -65,10 +65,8 @@ export default function AddArtwork() {
                 category,
                 price,
                 image: imageUrl,
-
                 artistName: session?.user?.name,
                 artistEmail: session?.user?.email,
-
                 createdAt: new Date(),
             };
 

@@ -5,13 +5,13 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 export default function ArtworkCard({ artwork }) {
+    console.log(artwork.image)
     return (
         <Link href={`/artworks/${artwork._id}`}>
             <div className="group cursor-pointer">
-
                 <div className="relative h-[500px] overflow-hidden">
                     <Image src={artwork.image}
-                        alt={artwork.title} fill
+                        alt={artwork.title} fill unoptimized
                         className="object-cover transition duration-500 group-hover:scale-105"
                     />
                 </div>
@@ -22,7 +22,7 @@ export default function ArtworkCard({ artwork }) {
                         Collection
                     </p>
 
-                    <h2 className="mt-3 text-2xl uppercase tracking-[0.18em] font-light">
+                    <h2 className="mt-3 text-lg uppercase tracking-[0.18em] font-light">
                         {artwork.title}
                     </h2>
 

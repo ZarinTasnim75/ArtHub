@@ -75,7 +75,7 @@ export default function ArtworksPage() {
 
             <div className="mb-10">
 
-                <h1 className="text-5xl font-black uppercase tracking-[0.15em]"> Browse Artworks
+                <h1 className="text-5xl font-black uppercase tracking-[0.15em]"> Artwork Collections
                 </h1>
 
                 <p className="mt-3 text-neutral-500 font-bold"> Discover artwork from talented artists. </p>

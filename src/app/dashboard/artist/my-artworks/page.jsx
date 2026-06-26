@@ -3,19 +3,23 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import toast from "react-hot-toast";
+import { authClient } from "../../../lib/auth-client";
 
 const ArtistArtworksPage = () => {
     const [artworks, setArtworks] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { data: session } = authClient.useSession();
 
     useEffect(() => {
-        fetch("http://localhost:5000/artworks")
+        if (!session?.user?.email) return;
+
+        fetch(`http://localhost:5000/my-artworks?email=${session.user.email}`)
             .then(res => res.json())
             .then(data => {
                 setArtworks(data);
                 setLoading(false);
             });
-    }, []);
+    }, [session]);
 
     const handleDelete = async (id) => {
         const res = await fetch(`http://localhost:5000/artworks/${id}`, {

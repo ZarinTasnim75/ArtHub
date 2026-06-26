@@ -50,7 +50,7 @@ const EditArtworkPage = () => {
 
         if (data.modifiedCount > 0) {
             toast.success("Artwork Updated");
-            router.push("/dashboard/artist/artworks");
+            router.push("/dashboard/artist/my-artworks");
         } else {
             toast.error("No Changes Made");
         }
@@ -145,7 +145,7 @@ const EditArtworkPage = () => {
                     <button
                         type="button"
                         onClick={() =>
-                            router.push("/dashboard/artist/artworks")
+                            router.push("/dashboard/artist/my-artworks")
                         }
                         className="btn btn-outline"
                     >
