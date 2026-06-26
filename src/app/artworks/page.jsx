@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import ArtworkCard from "../components/ArtworkCard";
 import ArtworkSkeleton from "../components/ArtworkSkeleton";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function ArtworksPage() {
 
@@ -12,20 +14,22 @@ export default function ArtworksPage() {
     const [priceFilter, setPriceFilter] = useState("all");
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
+    const searchParams = useSearchParams();
+    const [category, setCategory] = useState(searchParams.get("category") || "");
+    const router = useRouter();
 
     useEffect(() => {
 
-        fetch("http://localhost:5000/artworks")
+        setLoading(true);
+
+        fetch(`http://localhost:5000/artworks${category ? `?category=${encodeURIComponent(category)}` : ""}`)
             .then(res => res.json())
             .then(data => {
-
                 setArtworks(data);
-                setFilteredArtworks(data);
-
                 setLoading(false);
             });
 
-    }, []);
+    }, [category]);
 
     useEffect(() => {
 
@@ -68,7 +72,7 @@ export default function ArtworksPage() {
 
         setFilteredArtworks(data);
 
-    }, [search, artworks, sort, priceFilter]);
+    }, [search, artworks, sort, priceFilter, category]);
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10">
@@ -82,7 +86,7 @@ export default function ArtworksPage() {
 
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4 mb-10">
+            <div className="grid md:grid-cols-4 gap-4 mb-10">
 
                 <input type="text"
                     placeholder="Search artwork..."
@@ -91,26 +95,41 @@ export default function ArtworksPage() {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <select className="select select-bordered"
-                    value={priceFilter}
-                    onChange={(e) => setPriceFilter(e.target.value)}
-                >
+                <select className="select select-bordered" value={priceFilter} onChange={(e) => setPriceFilter(e.target.value)} >
                     <option value="all">All Prices</option>
                     <option value="low">Below $500</option>
                     <option value="medium">$500 - $1000</option>
                     <option value="high">Above $1000</option>
                 </select>
 
-                <select
-                    className="select select-bordered"
-                    value={sort}
-                    onChange={(e) => setSort(e.target.value)}
-                >
+                <select className="select select-bordered" value={sort} onChange={(e) => setSort(e.target.value)} >
                     <option value="">Sort</option>
                     <option value="low-high">Price: Low → High</option>
                     <option value="high-low">Price: High → Low</option>
                     <option value="az">Title A-Z</option>
                     <option value="za">Title Z-A</option>
+                </select>
+
+                <select
+                    className="select select-bordered"
+                    value={category}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        setCategory(value);
+                        router.replace(
+                            value
+                                ? `/artworks?category=${encodeURIComponent(value)}`
+                                : "/artworks"
+                        );
+                    }}
+                >
+                    <option value="">All Categories</option>
+                    <option value="Landscape">Landscape</option>
+                    <option value="Portrait">Portrait</option>
+                    <option value="Abstract">Abstract</option>
+                    <option value="Modern">Modern</option>
+                    <option value="Nature">Nature</option>
+                    <option value="Digital Art">Digital Art</option>
                 </select>
 
             </div>

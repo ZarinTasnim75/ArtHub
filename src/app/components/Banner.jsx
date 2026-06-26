@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight, FaClock, FaMapMarkerAlt } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const slides = [
     {
@@ -61,9 +62,14 @@ const Banner = () => {
                         <div className="absolute inset-y-0 left-0 flex items-center z-10">
                             <div className="px-6 lg:px-12 max-w-full lg:max-w-[55%] text-white">
 
-                                <p className="italic text-base md:text-lg mb-3">
-                                    Discover & Buy Original Art
-                                </p>
+                                {/* <p className="italic text-base md:text-lg mb-3"> */}
+                                    <motion.h1
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+> Discover & Buy Original Art </motion.h1>
+                                    
+                                {/* </p> */}
 
                                 <h1 className="text-3xl md:text-5xl lg:text-6xl xl:text-7xl ml-4 lg:ml-6 font-bold tracking-[0.12em] uppercase leading-tight">
                                     {slide.title}
