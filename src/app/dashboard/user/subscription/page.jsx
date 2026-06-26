@@ -110,6 +110,7 @@ export default function SubscriptionPage() {
 
                         </div>
                         <form action="/api/checkout_sessions" method="POST">
+                        <input type="hidden" name="plan_id" value={plan.id}></input>
                             <section>
                                 <button type="submit" role="link" disabled={currentPlan === plan.name} className={`btn w-full mt-10 ${currentPlan === plan.name
                                         ? "btn-disabled"
