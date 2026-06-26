@@ -1,277 +1,131 @@
 "use client";
 
-import Image from "next/image";
-import { useSession } from "../../lib/auth-client";
+import {
+    FaShoppingBag,
+    FaCrown,
+    FaPalette,
+} from "react-icons/fa";
 
-const UserDashboard = () => {
-    const { data: session } = useSession();
-
-    const purchases = [
-        {
-            id: 1,
-            artwork: "Golden Horizon",
-            artist: "John Smith",
-            price: "$120",
-            date: "2026-06-20",
-        },
-        {
-            id: 2,
-            artwork: "Silent Forest",
-            artist: "Emma Watson",
-            price: "$180",
-            date: "2026-06-15",
-        },
-    ];
-
-    const artworks = [
-        {
-            id: 1,
-            title: "Golden Horizon",
-            image: "/assets/art1.jpg",
-        },
-        {
-            id: 2,
-            title: "Silent Forest",
-            image: "/assets/art2.jpg",
-        },
-        {
-            id: 3,
-            title: "Ocean Dream",
-            image: "/assets/art3.jpg",
-        },
-    ];
+export default function UserDashboard() {
 
     return (
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10">
+        <div>
 
-            {/* Header */}
-            <div className="border-b border-neutral-300 pb-6">
-                <h1 className="text-4xl font-black tracking-[0.15em] uppercase">
-                    User Dashboard
-                </h1>
+            <div className="grid lg:grid-cols-3 gap-8 mt-10">
 
-                <p className="mt-3 text-gray-500 font-extrabold">
-                    Welcome back, {session?.user?.name || "User"}
-                </p>
-            </div>
+                <div className="border bg-white p-8">
 
-            {/* Overview */}
-            <div className="grid md:grid-cols-3 gap-6 mt-10">
+                    <FaShoppingBag
+                        className="text-[#8B6B3F]"
+                        size={34}
+                    />
 
-                <div className="border p-6">
-                    <h3 className="uppercase font-bold text-sm tracking-wider text-gray-500">
+                    <h2 className="mt-5 uppercase text-sm tracking-widest text-neutral-500 font-bold">
                         Total Purchases
-                    </h3>
+                    </h2>
 
-                    <p className="text-4xl font-black mt-3">
-                        2
+                    <p className="text-5xl font-black mt-4">
+                        0
                     </p>
+
+                    <p className="text-neutral-500 mt-2">
+                        Purchased artworks
+                    </p>
+
                 </div>
 
-                <div className="border p-6">
-                    <h3 className="uppercase font-bold text-sm tracking-wider text-gray-500">
-                        Subscription
-                    </h3>
+                <div className="border bg-white p-8">
 
-                    <p className="text-4xl font-black mt-3 text-[#8B6B3F]">
+                    <FaCrown
+                        className="text-yellow-500"
+                        size={34}
+                    />
+
+                    <h2 className="mt-5 uppercase text-sm tracking-widest text-neutral-500 font-bold">
+                        Current Plan
+                    </h2>
+
+                    <p className="text-5xl font-black mt-4 text-[#8B6B3F]">
                         Free
                     </p>
-                </div>
 
-                <div className="border p-6">
-                    <h3 className="uppercase font-bold text-sm tracking-wider text-gray-500">
-                        Remaining Slots
-                    </h3>
-
-                    <p className="text-4xl font-black mt-3">
-                        1
+                    <p className="text-neutral-500 mt-2">
+                        3 artworks allowed
                     </p>
+
                 </div>
 
-            </div>
+                <div className="border bg-white p-8">
 
-            {/* Purchase History */}
-            <div className="mt-12">
+                    <FaPalette
+                        className="text-green-600"
+                        size={34}
+                    />
 
-                <h2 className="text-2xl font-bold uppercase tracking-wider mb-6">
-                    Purchase History
-                </h2>
+                    <h2 className="mt-5 uppercase text-sm tracking-widest text-neutral-500 font-bold">
+                        Remaining
+                    </h2>
 
-                <div className="overflow-x-auto border">
+                    <p className="text-5xl font-black mt-4">
+                        3
+                    </p>
 
-                    <table className="table">
-
-                        <thead>
-                            <tr>
-                                <th>Artwork</th>
-                                <th>Artist</th>
-                                <th>Price</th>
-                                <th>Purchase Date</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {purchases.map((purchase) => (
-                                <tr key={purchase.id}>
-                                    <td>{purchase.artwork}</td>
-                                    <td>{purchase.artist}</td>
-                                    <td>{purchase.price}</td>
-                                    <td>{purchase.date}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-
-                    </table>
+                    <p className="text-neutral-500 mt-2">
+                        Purchases left
+                    </p>
 
                 </div>
 
             </div>
 
-            {/* Bought Artworks */}
-            <div className="mt-14">
 
-                <h2 className="text-2xl font-bold uppercase tracking-wider mb-6">
-                    Bought Artworks
+            <div className="mt-12 border bg-white p-10">
+
+                <h2 className="text-3xl font-black uppercase">
+                    Welcome to ArtHub
                 </h2>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <p className="mt-5 leading-8 text-neutral-600">
 
-                    {artworks.map((artwork) => (
-                        <div key={artwork.id} className="border">
+                    Explore unique artworks from talented artists around
+                    the world. Purchase original paintings, manage your
+                    collection, review your purchase history and upgrade
+                    your subscription whenever you need more purchase
+                    capacity.
 
-                            <div className="relative h-72">
-                                <Image
-                                    src={artwork.image}
-                                    alt={artwork.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-
-                            <div className="p-5">
-
-                                <h3 className="font-bold text-lg">
-                                    {artwork.title}
-                                </h3>
-
-                                <button className="mt-4 border border-[#8B6B3F] px-5 py-2 hover:bg-[#8B6B3F] hover:text-white transition">
-                                    View Details
-                                </button>
-
-                            </div>
-
-                        </div>
-                    ))}
-
-                </div>
+                </p>
 
             </div>
 
-            {/* Subscription Plans */}
-            <div className="mt-14">
+            <div className="grid md:grid-cols-2 gap-8 mt-10">
 
-                <h2 className="text-2xl font-bold uppercase tracking-wider mb-6">
-                    Subscription Overview
-                </h2>
+                <div className="border bg-white p-8">
 
-                <div className="grid md:grid-cols-3 gap-6">
+                    <h2 className="font-black text-2xl uppercase">
+                        Recent Activity
+                    </h2>
 
-                    <div className="border p-6">
-                        <h3 className="text-xl font-bold">
-                            Free
-                        </h3>
-
-                        <p className="text-gray-500 mt-2">
-                            3 Paintings
-                        </p>
-
-                        <p className="text-3xl font-black mt-4">
-                            $0
-                        </p>
-                    </div>
-
-                    <div className="border-2 border-[#8B6B3F] p-6">
-                        <h3 className="text-xl font-bold">
-                            Pro
-                        </h3>
-
-                        <p className="text-gray-500 mt-2">
-                            9 Paintings
-                        </p>
-
-                        <p className="text-3xl font-black mt-4">
-                            $9.99
-                        </p>
-                    </div>
-
-                    <div className="border p-6">
-                        <h3 className="text-xl font-bold">
-                            Premium
-                        </h3>
-
-                        <p className="text-gray-500 mt-2">
-                            Unlimited
-                        </p>
-
-                        <p className="text-3xl font-black mt-4">
-                            $19.99
-                        </p>
-                    </div>
+                    <p className="mt-4 text-neutral-500">
+                        Your recent purchases will appear here.
+                    </p>
 
                 </div>
 
-            </div>
+                <div className="border bg-white p-8">
 
-            {/* Profile */}
-            <div className="mt-14">
+                    <h2 className="font-black text-2xl uppercase">
+                        Subscription Status
+                    </h2>
 
-                <h2 className="text-2xl font-bold uppercase tracking-wider mb-6">
-                    Profile Management
-                </h2>
+                    <p className="mt-4 text-neutral-500">
+                        You are currently using the
+                        <span className="font-bold text-[#8B6B3F]">
+                            {" "}Free Plan
+                        </span>.
+                    </p>
 
-                <div className="border p-6">
-
-                    <div className="grid md:grid-cols-2 gap-6">
-
-                        <div>
-                            <label className="font-black">
-                                Full Name
-                            </label>
-
-                            <input
-                                type="text"
-                                defaultValue={session?.user?.name}
-                                className="input input-bordered w-full mt-2"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="font-black">
-                                Email
-                            </label>
-
-                            <input
-                                type="email"
-                                defaultValue={session?.user?.email}
-                                className="input input-bordered w-full mt-2"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="font-black">
-                                New Password
-                            </label>
-
-                            <input
-                                type="password"
-                                className="input input-bordered w-full mt-2"
-                            />
-                        </div>
-
-                    </div>
-
-                    <button className="mt-6 border border-[#8B6B3F] px-8 py-3 uppercase font-bold hover:bg-[#8B6B3F] hover:text-white transition">
-                        Save Changes
+                    <button className="btn bg-[#8B6B3F] text-white mt-6">
+                        Upgrade Plan
                     </button>
 
                 </div>
@@ -280,6 +134,4 @@ const UserDashboard = () => {
 
         </div>
     );
-};
-
-export default UserDashboard;
+}

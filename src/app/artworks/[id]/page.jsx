@@ -1,5 +1,3 @@
-// app/artworks/[id]/page.jsx
-
 import ArtworkDetailsClient from "./ArtworkDetailsClient";
 
 export default async function ArtworkDetails({ params }) {

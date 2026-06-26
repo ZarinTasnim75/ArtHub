@@ -28,7 +28,6 @@ export default function AdminLayout({ children }) {
     return (
         <div className="min-h-screen flex">
 
-            {/* Sidebar */}
             <aside className="w-72 bg-black text-white p-8">
 
                 <h2 className="text-3xl font-black tracking-[0.15em] uppercase mb-12">
@@ -75,7 +74,6 @@ export default function AdminLayout({ children }) {
 
             </aside>
 
-            {/* Content */}
             <main className="flex-1 bg-white">
                 {children}
             </main>

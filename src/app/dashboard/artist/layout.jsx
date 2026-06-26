@@ -13,8 +13,8 @@ export default function ArtistLayout({ children }) {
 
             <aside className="w-72 bg-black text-white p-8">
 
-                <h1 className="text-3xl font-black tracking-[0.15em] mb-10">
-                    ARTHUB
+                <h1 className="text-3xl font-black tracking-[0.15em] mb-10 uppercase">
+                    Navigation
                 </h1>
 
                 <div className="space-y-3">
