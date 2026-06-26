@@ -50,7 +50,21 @@ export default function SubscriptionPage() {
             ],
         },
     ];
-//
+    const handleCheckout = async (plan) => {
+        try {
+            const res = await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/create-checkout-session`,
+                {
+                    plan,
+                }
+            );
+
+            window.location.href = res.data.url;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div>
 
@@ -109,14 +123,19 @@ export default function SubscriptionPage() {
                             ))}
 
                         </div>
-                        {/* // */}
-                        
-
-                        <button >
+                        <button
+                            onClick={() => handleCheckout(plan.name)}
+                            disabled={currentPlan === plan.name}
+                            className={`btn w-full mt-10 ${currentPlan === plan.name
+                                    ? "btn-disabled"
+                                    : "bg-[#8B6B3F] text-white"
+                                }`}
+                        >
                             {currentPlan === plan.name
                                 ? "Current Plan"
                                 : plan.button}
                         </button>
+
                     </div>
                 ))}
             </div>
