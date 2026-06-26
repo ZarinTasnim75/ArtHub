@@ -31,9 +31,9 @@ const ArtworkDetailsClient = ({ artwork }) => {
             router.push("/dashboard/artist/my-artworks");
         }
     };
+
     const { data: session } = authClient.useSession();
-    const isOwner =
-        session?.user?.email === artwork.artistEmail;
+    const isOwner = session?.user?.email === artwork.artistEmail;
     return (
         <div>
             <div className="max-w-6xl mx-auto px-6 py-10">
@@ -41,12 +41,7 @@ const ArtworkDetailsClient = ({ artwork }) => {
                 <div className="grid lg:grid-cols-2 gap-10">
 
                     <div className="relative h-[600px]">
-                        <Image
-                            src={artwork.image}
-                            alt={artwork.title}
-                            fill unoptimized
-                            className="object-cover"
-                        />
+                        <Image src={artwork.image} alt={artwork.title} fill unoptimized className="object-cover" />
                     </div>
 
                     <div>

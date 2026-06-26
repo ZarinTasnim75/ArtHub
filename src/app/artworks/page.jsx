@@ -35,12 +35,10 @@ export default function ArtworksPage() {
 
         let data = [...artworks];
 
-        // Search
         data = data.filter(item =>
             item.title.toLowerCase().includes(search.toLowerCase())
         );
 
-        // Price Filter
         if (priceFilter === "low") {
             data = data.filter(item => item.price < 500);
         }
@@ -53,7 +51,6 @@ export default function ArtworksPage() {
             data = data.filter(item => item.price > 1000);
         }
 
-        // Sorting
         if (sort === "low-high") {
             data.sort((a, b) => a.price - b.price);
         }
@@ -89,11 +86,8 @@ export default function ArtworksPage() {
             <div className="grid md:grid-cols-4 gap-4 mb-10">
 
                 <input type="text"
-                    placeholder="Search artwork..."
-                    className="input input-bordered w-full"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                />
+                    placeholder="Search artwork..." className="input input-bordered w-full" value={search}
+                    onChange={(e) => setSearch(e.target.value)} />
 
                 <select className="select select-bordered" value={priceFilter} onChange={(e) => setPriceFilter(e.target.value)} >
                     <option value="all">All Prices</option>
@@ -110,19 +104,13 @@ export default function ArtworksPage() {
                     <option value="za">Title Z-A</option>
                 </select>
 
-                <select
-                    className="select select-bordered"
-                    value={category}
-                    onChange={(e) => {
+                <select className="select select-bordered"
+                    value={category} onChange={(e) => {
                         const value = e.target.value;
                         setCategory(value);
                         router.replace(
-                            value
-                                ? `/artworks?category=${encodeURIComponent(value)}`
-                                : "/artworks"
-                        );
-                    }}
-                >
+                            value ? `/artworks?category=${encodeURIComponent(value)}` : "/artworks" );
+                    }} >
                     <option value="">All Categories</option>
                     <option value="Landscape">Landscape</option>
                     <option value="Portrait">Portrait</option>
@@ -137,42 +125,25 @@ export default function ArtworksPage() {
             {loading ? (
 
                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-
                     {[...Array(8)].map((_, i) => (
                         <ArtworkSkeleton key={i} />
                     ))}
-
                 </div>
 
             ) : filteredArtworks.length === 0 ? (
 
                 <div className="text-center py-20">
-
-                    <h2 className="text-2xl font-black uppercase">
-                        No Artwork Found
-                    </h2>
-
-                    <p className="mt-3 text-neutral-500">
-                        Try changing your search.
-                    </p>
-
+                    <h2 className="text-2xl font-black uppercase"> No Artwork Found </h2>
+                    <p className="mt-3 text-neutral-500"> Try changing your search. </p>
                 </div>
 
             ) : (
-
                 <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
-
                     {filteredArtworks.map(artwork => (
-                        <ArtworkCard
-                            key={artwork._id}
-                            artwork={artwork}
-                        />
+                        <ArtworkCard key={artwork._id} artwork={artwork} />
                     ))}
-
                 </div>
-
             )}
-
         </div>
     );
 }

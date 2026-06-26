@@ -1,13 +1,13 @@
 "use client";
-
 import { FaCheckCircle, FaCrown } from "react-icons/fa";
 
 export default function SubscriptionPage() {
-    const currentPlan = "Free"; 
+    const currentPlan = "Free";
 
     const plans = [
         {
             name: "Free",
+            id: "free",
             price: "$0",
             limit: "3 Paintings",
             color: "border-gray-300",
@@ -20,6 +20,7 @@ export default function SubscriptionPage() {
         },
         {
             name: "Pro",
+            id: "pro",
             price: "$9.99",
             limit: "9 Paintings",
             color: "border-[#8B6B3F]",
@@ -34,6 +35,7 @@ export default function SubscriptionPage() {
         },
         {
             name: "Premium",
+            id: "premium",
             price: "$19.99",
             limit: "Unlimited",
             color: "border-black",
@@ -107,26 +109,25 @@ export default function SubscriptionPage() {
                             ))}
 
                         </div>
+                        <form action="/api/checkout_sessions" method="POST">
+                            <section>
+                                <button type="submit" role="link" disabled={currentPlan === plan.name} className={`btn w-full mt-10 ${currentPlan === plan.name
+                                        ? "btn-disabled"
+                                        : "bg-[#8B6B3F] text-white"
+                                    }`}>
+                                    Checkout
+                                </button>
+                            </section>
+                        </form>
 
-                        <button
-                            disabled={currentPlan === plan.name}
-                            className={`btn w-full mt-10 ${
-                                currentPlan === plan.name
-                                    ? "btn-disabled"
-                                    : "bg-[#8B6B3F] text-white"
-                            }`}
-                        >
+                        {/* <button >
                             {currentPlan === plan.name
                                 ? "Current Plan"
                                 : plan.button}
-                        </button>
-
+                        </button> */}
                     </div>
-
                 ))}
-
             </div>
-
         </div>
     );
 }
