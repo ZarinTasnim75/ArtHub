@@ -42,19 +42,19 @@ export default function UserDashboard() {
         0
     );
     return (
-        <div>
+        <div className="max-w-7xl mx-auto">
 
-            <div className="grid lg:grid-cols-3 gap-8 mt-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-6 mt-8">
 
-                <div className="border bg-white p-8">
+                <div className="border bg-white rounded-xl p-5 lg:p-6 hover:shadow-xl transition">
 
-                    <FaShoppingBag className="text-[#8B6B3F]" size={34} />
+                    <FaShoppingBag className="text-[#8B6B3F] text-3xl lg:text-4xl" />
 
                     <h2 className="mt-5 uppercase text-sm tracking-widest text-neutral-500 font-bold">
                         Total Purchases
                     </h2>
 
-                    <p className="text-5xl font-black mt-4">
+                    <p className="text-3xl lg:text-5xl font-black mt-3">
                         {totalPurchases}
                     </p>
 
@@ -64,7 +64,7 @@ export default function UserDashboard() {
 
                 </div>
 
-                <div className="border bg-white p-8">
+                <div className="border bg-white rounded-xl p-6 lg:p-8 hover:shadow-xl transition">
 
                     <FaCrown
                         className="text-yellow-500"
@@ -87,7 +87,7 @@ export default function UserDashboard() {
 
                 </div>
 
-                <div className="border bg-white p-8">
+                <div className="border bg-white rounded-xl p-6 lg:p-8 hover:shadow-xl transition">
 
                     <FaPalette
                         className="text-green-600"
@@ -111,13 +111,13 @@ export default function UserDashboard() {
             </div>
 
 
-            <div className="mt-12 border bg-white p-10">
+            <div className="mt-10 lg:mt-12 border bg-white rounded-xl p-6 lg:p-10">
 
-                <h2 className="text-3xl font-black uppercase">
+                <h2 className="text-2xl lg:text-3xl font-black uppercase">
                     Welcome to ArtHub
                 </h2>
 
-                <p className="mt-5 leading-8 text-neutral-600">
+                <p className="mt-4 leading-7 lg:leading-8 text-sm lg:text-base text-neutral-600">
 
                     Explore unique artworks from talented artists around
                     the world. Purchase original paintings, manage your
@@ -129,11 +129,11 @@ export default function UserDashboard() {
 
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8 mt-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-8 mt-10">
 
-                <div className="border bg-white p-8">
+                <div className="border bg-white rounded-xl p-6 lg:p-8 hover:shadow-xl transition">
 
-                    <h2 className="font-black text-2xl uppercase">
+                    <h2 className="font-black text-xl lg:text-2xl uppercase">
                         Recent Activity
                     </h2>
 
@@ -141,9 +141,9 @@ export default function UserDashboard() {
                         Your recent purchases will appear here.
                     </p>
                 </div>
-                <div className="border bg-white p-8">
+                <div className="border bg-white rounded-xl p-6 lg:p-8 hover:shadow-xl transition">
 
-                    <h2 className="font-black text-2xl uppercase">
+                    <h2 className="font-black text-xl lg:text-2xl uppercase">
                         Subscription Status
                     </h2>
 
@@ -154,7 +154,7 @@ export default function UserDashboard() {
                         </span>.
                     </p>
                     <Link href="/dashboard/user/subscription">
-                        <button className="btn bg-[#8B6B3F] text-white mt-6">
+                        <button className="btn bg-[#8B6B3F] text-white mt-6 w-full sm:w-auto">
                             Upgrade Plan
                         </button>
                     </Link>
