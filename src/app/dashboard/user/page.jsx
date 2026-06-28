@@ -140,9 +140,7 @@ export default function UserDashboard() {
                     <p className="mt-4 text-neutral-500">
                         Your recent purchases will appear here.
                     </p>
-
                 </div>
-
                 <div className="border bg-white p-8">
 
                     <h2 className="font-black text-2xl uppercase">
@@ -161,9 +159,7 @@ export default function UserDashboard() {
                         </button>
                     </Link>
                 </div>
-
             </div>
-
         </div>
     );
 }

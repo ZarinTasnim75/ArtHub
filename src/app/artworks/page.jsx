@@ -76,7 +76,7 @@ export default function ArtworksPage() {
 
             <div className="mb-10">
 
-                <h1 className="text-5xl font-black uppercase tracking-[0.15em]"> Artwork Collections
+                <h1 className="text-2xl lg:text-5xl font-black uppercase tracking-[0.15em]"> Artwork Collections
                 </h1>
 
                 <p className="mt-3 text-neutral-500 font-bold"> Discover artwork from talented artists. </p>
@@ -124,7 +124,7 @@ export default function ArtworksPage() {
 
             {loading ? (
 
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                     {[...Array(8)].map((_, i) => (
                         <ArtworkSkeleton key={i} />
                     ))}
@@ -138,7 +138,7 @@ export default function ArtworksPage() {
                 </div>
 
             ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
                     {filteredArtworks.map(artwork => (
                         <ArtworkCard key={artwork._id} artwork={artwork} />
                     ))}

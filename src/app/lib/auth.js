@@ -17,12 +17,27 @@ export const auth = betterAuth({
     },
   },
 
-  user: {
+user: {
     additionalFields: {
       role: {
         type: "string",
         required: true,
         defaultValue: "user",
+      },
+      artistImage: {
+        type: "string",
+        required: false,
+        defaultValue: "",
+      },
+      plan: {
+        type: "string",
+        required: false,
+        defaultValue: "Free",
+      },
+      maxPurchases: {
+        type: "number",
+        required: false,
+        defaultValue: 3,
       },
     },
   },

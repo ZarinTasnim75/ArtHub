@@ -59,21 +59,23 @@ export default function AddArtwork() {
                 throw new Error("Image upload failed");
             }
 
+            const userRes = await axios.get(
+                `http://localhost:5000/users?email=${session.user.email}`
+            );
+
             const artwork = {
                 title,
                 description,
                 category,
                 price,
                 image: imageUrl,
-                artistName: session?.user?.name,
-                artistEmail: session?.user?.email,
+                artistName: session.user.name,
+                artistEmail: session.user.email,
+                artistImage: userRes.data.artistImage || "",
                 createdAt: new Date(),
             };
-
             const result = await axios.post(
-                "http://localhost:5000/artworks",
-                artwork
-            );
+                "http://localhost:5000/artworks", artwork );
 
             if (result.data.insertedId) {
                 toast.success("Artwork added successfully");
@@ -101,8 +103,7 @@ export default function AddArtwork() {
 
                 <form
                     onSubmit={handleSubmit}
-                    className="space-y-5"
-                >
+                    className="space-y-5" >
                     <div>
                         <label className="block mb-2 font-bold uppercase text-sm tracking-wider">
                             Artwork Title

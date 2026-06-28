@@ -20,6 +20,7 @@ const RegisterPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [artistImage, setArtistImage] = useState(null);
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const passwordRegex =
@@ -49,11 +50,43 @@ const RegisterPage = () => {
         try {
             setLoading(true);
 
+            let imageUrl = "";
+
+            if (role === "artist") {
+                if (!artistImage) {
+                    toast.error("Please choose an artist avatar");
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append("image", artistImage);
+
+                const upload = await fetch(
+                    `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
+
+                if (!upload.ok) {
+                    toast.error("Image upload failed");
+                    return;
+                }
+
+                const imageData = await upload.json();
+                imageUrl = imageData.data.display_url;
+                console.log("Image URL:", imageUrl);
+            }
+
             const result = await authClient.signUp.email({
                 name: fullName,
                 email,
                 password,
                 role,
+                artistImage: imageUrl,
+                plan: "Free",
+                maxPurchases: 3,
             });
 
             if (result.error) {
@@ -69,6 +102,7 @@ const RegisterPage = () => {
                 router.push("/");
             }
         } catch (error) {
+            console.error("Registration error:", error);
             toast.error("Registration failed");
         } finally {
             setLoading(false);
@@ -98,10 +132,7 @@ const RegisterPage = () => {
                                 ARTHUB
                             </h1>
 
-                            <Link
-                                href="/"
-                                className="text-gray-500 hover:text-black transition"
-                            >
+                            <Link href="/" className="text-gray-500 hover:text-black transition" >
                                 <FaTimes size={22} />
                             </Link>
                         </div>
@@ -110,29 +141,21 @@ const RegisterPage = () => {
                             Create Account
                         </h2>
 
-                        <p className="mt-3 text-gray-500 font-black">
-                            Join ARTHUB and discover original artworks.
-                        </p>
+                        <p className="mt-3 text-gray-500 font-black"> Join ARTHUB and discover original artworks. </p>
 
-                        <form
-                            onSubmit={handleRegister}
-                            className="mt-8 space-y-5"
-                        >
+                        <form onSubmit={handleRegister}
+                            className="mt-8 space-y-5" >
 
                             <div>
                                 <label className="block mb-2 uppercase font-extrabold text-sm tracking-wider text-gray-600">
                                     Full Name
                                 </label>
 
-                                <input
-                                    type="text"
+                                <input type="text"
                                     value={fullName}
-                                    onChange={(e) =>
-                                        setFullName(e.target.value)
-                                    }
+                                    onChange={(e) => setFullName(e.target.value)}
                                     placeholder="Enter your full name"
-                                    className="w-full border border-gray-300 px-4 py-3 outline-none focus:border-[#8B6B3F]"
-                                />
+                                    className="w-full border border-gray-300 px-4 py-3 outline-none focus:border-[#8B6B3F]" />
                             </div>
 
                             <div>
@@ -172,6 +195,22 @@ const RegisterPage = () => {
                                     </option>
                                 </select>
                             </div>
+
+                            {role === "artist" && (
+                                <div>
+                                    <label className="block mb-2 uppercase font-bold text-sm tracking-wider text-gray-600">
+                                        Artist Avatar
+                                    </label>
+
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => setArtistImage(e.target.files[0])}
+                                        className="w-full border border-gray-300 px-4 py-3 outline-none focus:border-[#8B6B3F]"
+                                    />
+                                </div>
+                            )}
+
 
                             <div className="relative">
 

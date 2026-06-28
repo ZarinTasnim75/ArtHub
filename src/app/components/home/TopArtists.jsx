@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
+import default_avatar from "../../../../public/assets/images.jpg";
 
 export default function TopArtists({ artists }) {
 
@@ -12,9 +13,7 @@ export default function TopArtists({ artists }) {
             <div className="max-w-7xl mx-auto">
 
                 <h2 className="text-5xl font-black uppercase">
-
                     Top Artists
-
                 </h2>
 
                 <div className="grid md:grid-cols-3 gap-10 mt-14">
@@ -43,13 +42,10 @@ export default function TopArtists({ artists }) {
                                 once:true
                             }}
 
-                            className="bg-white p-10 text-center shadow"
-
-                        >
+                            className="bg-white p-10 text-center shadow" >
 
                             <Image
-
-                                src={artist.avatar}
+                                src={artist.avatar || default_avatar}
 
                                 alt={artist.artistName}
 
