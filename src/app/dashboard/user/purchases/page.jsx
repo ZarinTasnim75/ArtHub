@@ -15,7 +15,7 @@ export default function PurchasesPage() {
         if (!session?.user?.email) return;
 
         fetch(
-            `http://localhost:5000/purchases?email=${session.user.email}`
+            `${process.env.NEXT_PUBLIC_API_URL}/purchases?email=${session.user.email}`
         )
             .then(res => res.json())
             .then(data => {

@@ -23,7 +23,7 @@ export default function ProfilePage() {
         try {
 
             const res = await fetch(
-                "http://localhost:5000/profile",
+                `${process.env.NEXT_PUBLIC_API_URL}/profile`,
                 {
                     method: "PATCH",
                     headers: {

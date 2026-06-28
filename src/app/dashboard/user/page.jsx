@@ -1,5 +1,5 @@
 "use client";
-
+import { useEffect } from "react";
 import { FaShoppingBag, FaCrown, FaPalette } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -8,6 +8,30 @@ import Link from "next/link";
 
 export default function UserDashboard() {
     const { data: session } = authClient.useSession();
+// get JWT for Google sign-ins (and as a fallback for anyone landing here without one)
+   useEffect(() => {
+    const getToken = async () => {
+        if (!session?.user?.email) return;
+
+        const existingToken = localStorage.getItem("access-token");
+
+        if (existingToken) {
+            // decode without verifying, just to check whose token it is
+            const payload = JSON.parse(atob(existingToken.split(".")[1]));
+            if (payload.email === session.user.email) return; // still valid for this user
+        }
+
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jwt`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: session.user.email }),
+        });
+        const { token } = await res.json();
+        localStorage.setItem("access-token", token);
+    };
+
+    getToken();
+}, [session]);
 
     const { data: userInfo } = useQuery({
         queryKey: ["user", session?.user?.email],
@@ -19,7 +43,6 @@ export default function UserDashboard() {
             return res.data;
         },
     });
-    console.log(userInfo);
     const { data: purchases = [] } = useQuery({
         queryKey: ["purchases", session?.user?.email],
         enabled: !!session?.user?.email,

@@ -6,7 +6,7 @@ import Categories from "../../src/app/components/home/Categories";
 export default async function Home() {
 
     const res = await fetch(
-        "http://localhost:5000/top-artists",
+        `${process.env.NEXT_PUBLIC_API_URL}/top-artists`,
         {
             cache: "no-store",
         }

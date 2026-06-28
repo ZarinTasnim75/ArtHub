@@ -22,7 +22,7 @@ export default function ArtworksPage() {
 
         setLoading(true);
 
-        fetch(`http://localhost:5000/artworks${category ? `?category=${encodeURIComponent(category)}` : ""}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/artworks${category ? `?category=${encodeURIComponent(category)}` : ""}`)
             .then(res => res.json())
             .then(data => {
                 setArtworks(data);

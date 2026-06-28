@@ -41,15 +41,23 @@ const LoginPage = () => {
         email,
         password,
       });
-      console.log(result);
+
       if (result.error) {
         toast.error(result.error.message);
         return;
       }
+// get your custom JWT for the Express backend
+const jwtRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jwt`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+});
+const { token } = await jwtRes.json();
+
+localStorage.setItem("access-token", token);
 
       toast.success("Login successful");
       router.refresh();
-      console.log(result);
 
       const role = result.data?.user?.role;
 

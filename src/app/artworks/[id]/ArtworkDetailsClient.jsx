@@ -18,7 +18,7 @@ const ArtworkDetailsClient = ({ artwork }) => {
         if (!confirm("Delete this artwork?")) return;
 
         const res = await fetch(
-            `http://localhost:5000/artworks/${artwork._id}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/artworks/${artwork._id}`,
             {
                 method: "DELETE",
             }

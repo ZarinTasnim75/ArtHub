@@ -40,8 +40,9 @@ export default function Navbar() {
             await authClient.signOut();
 
             toast.success("Logged out successfully");
+            localStorage.removeItem("access-token");
+            router.push("/auth/login");
 
-            router.push("/");
             router.refresh();
 
         } catch (error) {
@@ -193,7 +194,7 @@ export default function Navbar() {
 
                         {user ? (
                             <button className=" w-fit border-2 border-black px-6 py-2 font-bold uppercase tracking-wider hover:bg-black hover:text-white transition "
-                                onClick={() => setMenuOpen(false)}
+                                onClick={handleLogout}
                             >
                                 Logout
                             </button>

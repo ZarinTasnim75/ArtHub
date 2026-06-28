@@ -76,7 +76,6 @@ const RegisterPage = () => {
 
                 const imageData = await upload.json();
                 imageUrl = imageData.data.display_url;
-                console.log("Image URL:", imageUrl);
             }
 
             const result = await authClient.signUp.email({
@@ -93,8 +92,17 @@ const RegisterPage = () => {
                 toast.error(result.error.message);
                 return;
             }
-
             toast.success("Registration successful");
+
+                        // get your custom JWT for the Express backend
+const jwtRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/jwt`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email }),
+});
+const { token } = await jwtRes.json();
+
+localStorage.setItem("access-token", token);
 
             if (role === "artist") {
                 router.push("/dashboard/artist");

@@ -60,7 +60,7 @@ export default function AddArtwork() {
             }
 
             const userRes = await axios.get(
-                `http://localhost:5000/users?email=${session.user.email}`
+                `${process.env.NEXT_PUBLIC_API_URL}/users?email=${session.user.email}`
             );
 
             const artwork = {
@@ -75,7 +75,7 @@ export default function AddArtwork() {
                 createdAt: new Date(),
             };
             const result = await axios.post(
-                "http://localhost:5000/artworks", artwork );
+                `${process.env.NEXT_PUBLIC_API_URL}/artworks`, artwork );
 
             if (result.data.insertedId) {
                 toast.success("Artwork added successfully");

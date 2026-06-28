@@ -6,7 +6,7 @@ const ArtistSalesPage = () => {
     const [sales, setSales] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/sales/:email")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/sales/:email`)
             .then(res => res.json())
             .then(data => setSales(data));
     }, []);

@@ -12,7 +12,6 @@ const ArtistProfilePage = () => {
     const [loading, setLoading] = useState(false);
     const [artistImage, setArtistImage] = useState(null);
     const [preview, setPreview] = useState("");
-    console.log("Session User:", session?.user);
 
     useEffect(() => {
         if (session?.user) {
@@ -27,7 +26,7 @@ const ArtistProfilePage = () => {
             setLoading(true);
 
             const res = await fetch(
-                "http://localhost:5000/profile",
+                `${process.env.NEXT_PUBLIC_API_URL}/profile`,
                 {
                     method: "PATCH",
                     headers: {

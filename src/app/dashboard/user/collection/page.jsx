@@ -17,7 +17,7 @@ export default function CollectionPage() {
         if (!session?.user?.email) return;
 
         fetch(
-            `http://localhost:5000/purchased-artworks?email=${session.user.email}`
+            `${process.env.NEXT_PUBLIC_API_URL}/purchased-artworks?email=${session.user.email}`
         )
             .then(res => res.json())
             .then(data => {

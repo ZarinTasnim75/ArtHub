@@ -11,7 +11,6 @@ export default async function Success({ searchParams }) {
   }
 
   const stripeSession = await stripe.checkout.sessions.retrieve(session_id);
-console.log(stripeSession.metadata);
   const {
     status,
     customer_details: { email: customerEmail },
@@ -21,7 +20,7 @@ console.log(stripeSession.metadata);
   if (status === "complete") {
  
     const response = await fetch(
-      "http://localhost:5000/users/subscription",
+      `${process.env.NEXT_PUBLIC_API_URL}/users/subscription`,
       {
         method: "PATCH",
         headers: {

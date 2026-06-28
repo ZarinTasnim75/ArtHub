@@ -5,7 +5,6 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 export default function ArtworkCard({ artwork }) {
-    console.log(artwork.image)
     return (
         <Link href={`/artworks/${artwork._id}`}>
             <div className="group cursor-pointer">

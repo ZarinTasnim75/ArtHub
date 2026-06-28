@@ -13,7 +13,7 @@ const EditArtworkPage = () => {
     const [updating, setUpdating] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/artworks/${id}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/artworks/${id}`)
             .then(res => res.json())
             .then(data => {
                 setArtwork(data);
@@ -36,7 +36,7 @@ const EditArtworkPage = () => {
         };
 
         const res = await fetch(
-            `http://localhost:5000/artworks/${id}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/artworks/${id}`,
             {
                 method: "PUT",
                 headers: {

@@ -12,7 +12,7 @@ export default function FeaturedArtworks() {
 
     useEffect(() => {
 
-        fetch("http://localhost:5000/featured-artworks")
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/featured-artworks`)
             .then(res => res.json())
             .then(data => {
                 setArtworks(data);

@@ -13,7 +13,7 @@ const ArtistArtworksPage = () => {
     useEffect(() => {
         if (!session?.user?.email) return;
 
-        fetch(`http://localhost:5000/my-artworks?email=${session.user.email}`)
+        fetch(`${process.env.NEXT_PUBLIC_API_URL}/my-artworks?email=${session.user.email}`)
             .then(res => res.json())
             .then(data => {
                 setArtworks(data);
@@ -22,7 +22,7 @@ const ArtistArtworksPage = () => {
     }, [session]);
 
     const handleDelete = async (id) => {
-        const res = await fetch(`http://localhost:5000/artworks/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/artworks/${id}`, {
             method: "DELETE",
         });
 
