@@ -53,7 +53,7 @@ const ArtworkDetailsClient = ({ artwork }) => {
                         <p className="mt-4 text-lg">
                             Artist:{" "}
                             <Link
-                                href={`/artist/${artwork.artistEmail}`}
+                                href={`/artist-artworks/${encodeURIComponent(artwork.artistEmail)}`}
                                 className="text-[#8B6B3F] hover:underline"
                             >
                                 {artwork.artistName}
