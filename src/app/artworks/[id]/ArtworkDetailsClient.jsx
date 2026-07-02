@@ -9,9 +9,32 @@ import toast from "react-hot-toast";
 const ArtworkDetailsClient = ({ artwork }) => {
     const router = useRouter();
 
-    const handlePurchase = () => {
-        router.push(`/checkout/${artwork._id}`);
-    };
+    // const handlePurchase = () => {
+    //     router.push(`/checkout/${artwork._id}`);
+    // };
+
+    const handlePurchase = async () => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/create-checkout-session/artwork`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                artworkId: artwork._id,
+                email: session.user.email,
+            }),
+        });
+
+        const data = await res.json();
+
+        if (data.url) {
+            window.location.href = data.url;
+        } else {
+            toast.error(data.message || "Could not start checkout");
+        }
+    } catch (err) {
+        toast.error("Something went wrong starting checkout");
+    }
+};
 
     const handleDelete = async () => {
 

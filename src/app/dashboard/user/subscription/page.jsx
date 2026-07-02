@@ -53,7 +53,7 @@ export default function SubscriptionPage() {
     const handleCheckout = async (plan) => {
         try {
             const res = await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/create-checkout-session`,
+                `${process.env.NEXT_PUBLIC_API_URL}/create-checkout-session/subscription`,
                 {
                     plan,
                 }
