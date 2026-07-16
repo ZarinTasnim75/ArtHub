@@ -12,7 +12,12 @@ Live Site Link: https://arthub-client-seven.vercel.app
 
 The purpose of ArtHub is to create a modern digital platform where artists can manage their artwork portfolio while buyers can browse artwork collections in an attractive and user-friendly environment. The project also demonstrates advanced web development concepts including authentication, authorization, database management, payment integration, and dashboard management using the MERN stack.
 
-## Features
+## 📸 Screenshot
+
+<img width="1887" height="919" alt="image" src="https://github.com/user-attachments/assets/be2a0896-bfd0-43b6-916f-ba4733b06158" />
+
+
+## ✨ Features
 
 1.ArtHub provides secure authentication using email/password and Google Sign-In. Users receive JWT tokens for accessing protected routes and role-based dashboard features.
 
@@ -34,7 +39,7 @@ The purpose of ArtHub is to create a modern digital platform where artists can m
 
 1.Loading states, custom error handling, and a custom 404 page improve the overall user experience.
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 The frontend is built with Next.js, React, Tailwind CSS, DaisyUI, Axios, React Hook Form, React Hot Toast, Better Auth.
 
@@ -45,3 +50,158 @@ Artwork images are hosted using the ImgBB API.
 ## Environment Variables
 
 The project uses environment variables to protect sensitive credentials such as MongoDB connection strings, JWT secret, Stripe secret key, Stripe Price IDs, ImgBB API key, Better Auth credentials, and frontend/backend URLs.
+
+## 📦 Main Dependencies
+
+### Client
+
+```json
+{
+    "@better-auth/mongo-adapter": "^1.6.20",
+    "@stripe/stripe-js": "^9.8.0",
+    "@tanstack/react-query": "^5.101.1",
+    "axios": "^1.18.1",
+    "better-auth": "^1.6.20",
+    "lucide-react": "^1.21.0",
+    "mongodb": "^7.3.0",
+    "motion": "^12.42.0",
+    "next": "^16.2.9",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-hot-toast": "^2.6.0",
+    "react-icons": "^5.6.0",
+    "recharts": "^3.9.0",
+    "stripe": "^22.3.0"
+}
+```
+
+### Server
+
+```json
+{
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.3.0",
+    "stripe": "^22.3.0"
+}
+```
+
+# 🚀 Run Locally
+
+## 1. Clone the repositories
+
+### Client
+
+```bash
+git clone https://github.com/ZarinTasnim75/ArtHub.git
+```
+
+### Server
+
+```bash
+git clone https://github.com/your-username/ArtHub-server.git
+```
+
+---
+
+## 2. Navigate to the project folders
+
+### Client
+
+```bash
+cd ArtHub
+```
+
+### Server
+
+```bash
+cd ArtHub-server
+```
+
+---
+
+## 3. Install dependencies
+
+### Client
+
+```bash
+npm install
+```
+
+### Server
+
+```bash
+npm install
+```
+
+---
+
+## 4. Configure Environment Variables
+
+### Client (`.env.local`)
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+
+BETTER_AUTH_URL=http://localhost:3000
+BETTER_AUTH_SECRET=your_secret
+
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+```
+
+### Server (`.env`)
+
+```env
+PORT=5000
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_jwt_secret
+
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_PRO_PRICE_ID=your_pro_price_id
+STRIPE_PREMIUM_PRICE_ID=your_premium_price_id
+
+IMGBB_API_KEY=your_imgbb_api_key
+
+CLIENT_URL=http://localhost:3000
+```
+
+---
+
+## 5. Start the development servers
+
+### Backend
+
+```bash
+npm run dev
+```
+
+### Frontend
+
+```bash
+npm run dev
+```
+
+---
+
+## 6. Open the application
+
+```
+Frontend: http://localhost:3000
+
+Backend: http://localhost:5000
+```
+
+---
+
+## 📂 Resources
+
+- 🌐 **Live Website:** https://arthub-client-seven.vercel.app
+- 💻 **Client Repository:** https://github.com/ZarinTasnim75/ArtHub
+- 🖥️ **Server Repository:** https://github.com/ZarinTasnim75/ArtHub-server
+
+---
